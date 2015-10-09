@@ -8,13 +8,16 @@ class HomeController < ApplicationController
 	end
 
 	def check
-		@startWord = "this is a start word"
-		@goalWord = "this is the goal word"
-		@words = [ params['step1'], 
+		@startWord = params['start_word']
+		@goalWord = params['goal_word']
+		@words = [ @startWord,
+			  @goalWord,
+			  params['step1'], 
 		      	  params['step2'], 
 		          params['step3'], 
 		          params['step4'], 
 		          params['step5'] ]
-
+		checkWords = @words.reject{ |word| word.empty? }
+		@didWin = legal checkWords
 	end
 end

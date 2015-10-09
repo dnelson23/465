@@ -8,29 +8,23 @@
 			<td>Start</td>
 			<td><%= @startWord %></td>
 		</tr>
+		<% for i in 2..6 do %>
+		<% if @words[i] != "" %>
 		<tr>
-			<td>Step 1:</td>
-			<td><%= @words[0] %></td>
+			<td>Step <%= i-1 %>:</td>
+			<td><%= @words[i] %></td>
 		</tr>
-		<tr>
-			<td>Step 2:</td>
-			<td><%= @words[1] %></td>
-		</tr>
-		<tr>
-			<td>Step 3:</td>
-			<td><%= @words[2] %></td>
-		</tr>
-		<tr>
-			<td>Step 4:</td>
-			<td><%= @words[3] %></td>
-		</tr>
-		<tr>
-			<td>Step 5:</td>
-			<td><%= @words[4] %></td>
-		</tr>
+		<% end %>
+		<% end %>
 		<tr>
 			<td>End:</td>
 			<td><%= @goalWord %>
 		</tr>
 	</tbody>
 </table>
+
+<% if @didWin %>
+<h2>Congrats? You won</h2>
+<% else %>
+<h2>Sorry, you lose. Loser.</h2>
+<% end %>
