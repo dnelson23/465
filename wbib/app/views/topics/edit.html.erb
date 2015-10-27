@@ -1,1 +1,24 @@
-<h1>Hello</h1>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="centered">
+            <div class="col-xs-12">
+                <h1><%= @topic.title %></h1>
+            </div>
+            <div class="col-xs-12">
+            <%= form_for @topic, url: {action: "update"} do |t| %>
+                    <div class="form-group">
+                        <div class="col-xs-4 text-right"><%= t.label :title %></div>
+                        <div class="col-xs-8"><%= t.text_field :title, :class => "form-control" %></div>
+                    </div>
+                    </br>
+                    <div class="form-group">
+                        <div class="col-xs-4 text-right"><%= t.label :description %></div>
+                        <div class="col-xs-8"><%= t.text_area :description, :class => "form-control" %></div>
+                    </div>
+                    </br>
+                    <%= t.submit "Save", :class => "btn btn-primary" %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

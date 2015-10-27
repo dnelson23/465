@@ -22,9 +22,11 @@
     <div class="container">
         <div class="row">
             <div id="main-container" class="col-xs-12">
-                <% flash.each do |key, msg| %>
-                  <%= content_tag :div, msg, :id => key, :class => "alert alert-danger" %>
-                <% end %>
+                <div class="centered">
+                  <% flash.each do |key, msg| %>
+                    <%= content_tag :div, msg, :id => key, :class => "alert alert-" + key %>
+                  <% end %>
+                </div>
 
                 <%= yield %>
             </div>

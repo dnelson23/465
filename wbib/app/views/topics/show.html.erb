@@ -11,7 +11,7 @@
             <div class="col-xs-12">
             <% @references.each do |ref| %>
                 <div class="col-xs-6">
-                    <a href="http://<%= ref.url %>"><%= ref.url %></a>
+                    <a href="http://<%= ref.url %>" target="_blank"><%= ref.url %></a>
                 </div>
                 <div class="col-xs-4">
                     <%= ref.created_at %>

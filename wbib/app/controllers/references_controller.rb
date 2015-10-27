@@ -12,10 +12,15 @@ class ReferencesController < ApplicationController
 
         newReference.url = params[:reference][:url]
         newReference.topic_id = params[:topic_id]
-        newReference.save
 
-        flash[:notice] = "Your reference has been saved!"
-        redirect_to :back
+        if newReference.valid? then
+            newReference.save
+            flash[:info] = "Your reference has been saved!"
+            redirect_to :back
+        else
+            flash[:danger] = newReference.errors.full_messages.to_sentence
+            redirect_to :back
+        end
     end
 
     def destroy
