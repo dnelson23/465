@@ -4,7 +4,7 @@ class CreateTopicTable < ActiveRecord::Migration
       t.string :title
       t.string :description
 
-      t.timestamps :null false
+      t.timestamps null: false
     end
   end
 
