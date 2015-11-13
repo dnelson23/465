@@ -8,7 +8,7 @@
 <%= label_tag(:step0, "Step 0") %>
 <%= @word1 %>
 </br>
-<%=form_tag("/check", method: "get") do %>
+<%=form_tag(check_path, method: "get") do %>
 	<%= label_tag(:step1, "Step 1") %>
 	<%= text_field_tag(:step1) %>
 	</br>
