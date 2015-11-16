@@ -6,7 +6,5 @@ class CreateImageTable < ActiveRecord::Migration
 
         t.timestamps
     end
-
-    add_foreign_key :images, :users
   end
 end
