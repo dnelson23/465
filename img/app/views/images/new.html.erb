@@ -1,0 +1,12 @@
+<h2>Upload a New Image</h2>
+
+<div class="col-xs-6">
+  <%= form_for :image, url: {action: "create"} do |f| %>
+    <%= f.label :uploaded_file, "Choose a File" %>
+    <%= f.file_field :uploaded_file, :class => "form-control" %>
+    <%= f.label :is_privacy, "Is Private?" %>
+    <%= f.check_box :is_private %>
+    <br />
+    <%= f.submit "Upload", :class => "btn btn-primary" %>
+  <% end %>
+</div>
