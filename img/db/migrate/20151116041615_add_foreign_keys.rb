@@ -6,6 +6,6 @@ class AddForeignKeys < ActiveRecord::Migration
 
     add_reference :image_users, :user, index: true, foreign_keyL: true
 
-    add_reference :tags, :user, index: true, foreign_key: true
+    add_reference :tags, :image, index: true, foreign_key: true
   end
 end
