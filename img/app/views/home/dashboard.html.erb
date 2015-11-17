@@ -5,7 +5,7 @@
     <div class="col-xs-6">
         <%= link_to "Add New Image", new_image_path, :class => "btn btn-info" %>
     </div>
-    <div id="all-images">
+    <div id="all-images col-xs-12">
     <% @images.each do |image| %>
         <div style="padding-top:5px;padding-bottom:5px">
             <%= image_tag image.filename %>
