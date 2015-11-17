@@ -6,12 +6,12 @@ class ImagesController < ApplicationController
         @image = Image.new
         @uploaded_io = params[:image][:uploaded_file]
         @image.filename = generate_filename @uploaded_io.original_filename
-        @image.user = current_user
+        @image.user_id = current_user.id
 
-        if params[:image][:is_private] == 1
-            @image.is_private = true
+        if params[:image][:private] == 1
+            @image.private = true
         else
-            @image.is_private = false
+            @image.private = false
         end
 
         File.open(Rails.root.join('public', 'images', @image.filename), 'wb') do |file|
@@ -28,6 +28,18 @@ class ImagesController < ApplicationController
 
     def show
         @image = Image.find(params[:id])
+        @tags = @image.tags
+        @users = @image.users
+        @allUsers = User.all
+    end
+
+    def update
+        image = Image.find(params[:id])
+        image.private = params[:image_private]
+        image.save
+
+        flash[:info] = "Image privacy updated";
+        redirect_to :back
     end
 
     def destroy
