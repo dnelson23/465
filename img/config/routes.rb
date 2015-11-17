@@ -9,6 +9,12 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
 
+  get '/dashboard', to: 'home#dashboard'
+  resources :images do
+    resources :tags, :shallow => true
+    resources :image_users, :shallow => true
+  end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
