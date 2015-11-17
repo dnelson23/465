@@ -1,1 +1,21 @@
 <h2>Welcome to the Social Image Network!</h2>
+<br />
+<h4>Public Images</h4>
+<br />
+<div class="row">
+    <div class="col-xs-12">
+        <% @images.each do |image| %>
+            <% if !image.private %>
+            <div class="row">
+                <div class="col-xs-3 image">
+                    <a href=<%= root_url+"/images/"+image.filename %>><%= image_tag root_url+"/images/"+image.filename, size: "100x100", alt: image.filename %></a>
+                </div>
+                <div class="col-xs-3">
+                    <%= link_to "Click to View", image_path(image), :class => "btn btn-primary" %>
+                </div>
+            </div>
+            <% end %>
+        <% end %>
+    </div>
+</div>
+

@@ -4,8 +4,8 @@
   <%= form_for :image, url: {action: "create"} do |f| %>
     <%= f.label :uploaded_file, "Choose a File" %>
     <%= f.file_field :uploaded_file, :class => "form-control" %>
-    <%= f.label :is_privacy, "Is Private?" %>
-    <%= f.check_box :is_private %>
+    <%= f.label :private, "Is Private?" %>
+    <%= f.check_box :private %>
     <br />
     <%= f.submit "Upload", :class => "btn btn-primary" %>
   <% end %>

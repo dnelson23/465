@@ -25,11 +25,7 @@
             <div id="main-container" class="col-xs-12">
                 <div class="centered">
                   <% flash.each do |key, msg| %>
-                    <% if key == "notice" %>
-                      <%= content_tag :div, msg, :id => key, :class => "alert alert-info" %>
-                    <% else %>
-                      <%= content_tag :div, msg, :id => key, :class => "alert alert-danger" %>
-                    <% end %>
+                    <%= content_tag :div, msg, :id => key, :class => "alert alert-" + key %>
                   <% end %>
 
                   <%= yield %>
@@ -39,4 +35,6 @@
         </div>
     </div>
   </body>
+  <footer>
+  </footer>
 </html>
