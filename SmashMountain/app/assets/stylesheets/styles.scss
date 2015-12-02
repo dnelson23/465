@@ -1,0 +1,109 @@
+$dark-gray: #292929;
+$light-gray: #525252;
+$black: #101010;
+$white: #CCCCCC;
+$green: #0FB187;
+$light-green: #11CC9B;
+
+$text-primary: #CECECE;
+
+@mixin transition {
+    transition: border-color ease-in-out .15s, color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+body {
+    color: $text-primary;
+    background-color: $dark-gray;
+}
+
+.navbar-default {
+    min-height: 70px;
+    background-color: #525252;
+    border-color: $green;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 8px;
+
+    .navbar-brand { 
+        color: $text-primary;
+        font-size: 24px;
+        @include transition;
+    }
+
+    .navbar-brand:hover { color: $green; }
+
+    .navbar-nav { 
+
+        .open { }
+
+        li { 
+            a { 
+                color: $text-primary;
+                @include transition;
+                &:hover { color: $green; }
+                &:focus { color: $text-primary; }
+            } 
+        }
+
+        .dropdown-menu {
+            background-color: $black;
+            border: 1px solid $light-gray;
+
+            li { a:hover { color: $black; } }
+        }
+
+    }
+
+}
+
+.form-control {
+    background-color: $light-gray;
+    color: $text-primary;
+    &:focus { border-color: $green; }
+}
+
+/********************************/
+/*           BUTTONS            */
+/********************************/
+
+.btn.outline {
+    background: none;
+    padding: 12px 22px;
+    @include transition;
+}
+
+.btn-primary.outline {
+    border: 2px solid $green;
+    color: $green;
+    @include transition;
+}
+
+.btn-primary.outline:hover, .btn-primary.outline:focus, .btn-primary.outline:active, .btn-primary.outline.active, .open > .dropdown-toggle.btn-primary {
+    color: $light-green;
+    border-color: $light-green;
+    @include transition;
+}
+.btn-primary.outline:active, .btn-primary.outline.active {
+    border-color: $light-green;
+    color: $light-green;
+    box-shadow: none;
+    @include transition;
+}
+
+.btn-default.outline {
+    border: 2px solid $white;
+    color: $white;
+    @include transition;
+}
+
+.btn-default.outline:hover, .btn-default.outline:focus, .btn-default.outline:active, .btn-default.outline.active, .open > .dropdown-toggle.btn-default {
+    color: $light-gray;
+    border-color: $light-gray;
+    @include transition;
+}
+.btn-default.outline:active, .btn-default.outline.active {
+    border-color: $light-gray;
+    color: $light-gray;
+    box-shadow: none;
+    @include transition;
+}

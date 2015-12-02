@@ -1,4 +1,4 @@
-<h2>Sign up</h2>
+<h2>Register</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
@@ -31,9 +31,10 @@
     <%= f.password_field :password_confirmation, autocomplete: "off", :class => "form-control" %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up", :class => "btn btn-default" %>
+  <div class="actions row">
+    <div class="col-xs-12">
+      <%= f.submit "Register", :class => "btn btn-primary btn-lg outline" %>
+      <%= link_to "Log In", new_session_path(resource_name), :class => "btn btn-lg btn-primary outline" %>
+    </div>
   </div>
 <% end %>
-
-<%= render "users/shared/links" %>
