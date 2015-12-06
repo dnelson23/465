@@ -14,20 +14,20 @@ $(document).ready(function() {
         };
 
         $.ajax({
-            url: "https://api.challonge.com/v1/tournaments/"+tourney_name+".json",
+            url: "https://api.challonge.com/v1/tournaments/"+ajaxData["tournament"]+".json",
             contentType: "application/json",
+            dataType: "json",
             data: ajaxData,
             beforeSend: function() {
                 $('#tourney-form').toggle();
                 $('#fox-waveshine').removeClass('hidden');
             },
             success: function(data) {
-
+                alert("success");
+                alert(data["tournament"]["name"]);
+                $('#fox-waveshine').addClass('hidden');
             }
         });
-
-        $('#tourney-form').toggle();
-        $('#fox-waveshine').removeClass('hidden');
     });
 
 });
