@@ -29,6 +29,9 @@ gem 'less-rails-bootstrap'
 # add Devise authentication
 gem 'devise'
 
+# HTTP gem for challonge API calls
+gem "http"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
