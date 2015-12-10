@@ -1,33 +1,61 @@
 $(document).ready(function() {
 
     $('#tournament-upload').click(function() {
-        var url = $('#tournament-url').val().split('http://')[1],
-            subdomain = url.split('.')[0],
-            tourney_name = url.split('/')[1],
-            api_key = $('#challonge-key-hidden').val();
+        $('#tourney-form').toggle();
+        $('#fox-waveshine').removeClass('hidden');
+    });
 
-        var ajaxData = {
-            "api_key": api_key,
-            "tournament": subdomain + '-' + tourney_name,
-            "include_participants": 1,
-            "include_matches": 1
-        };
+    $('#search-smashers').change(function() {
+        var tag = $(this).val().toLowerCase();
+        if(tag == "") {
+            $('.smasher').each(function() {
+                if($(this).is(":visible"))
+                    $(this).slideToggle();
+            })
+        } else {
+            checkSmashers(tag);
+        }
+    });
 
-        $.ajax({
-            url: "https://api.challonge.com/v1/tournaments/"+ajaxData["tournament"]+".json",
-            contentType: "application/json",
+    $('input[name="smashers[][name]"]').change(function() {
+        var tag_to_check = $(this).val(),
+            dom = $(this),
+            status = false;
+
+        $.ajax ({
+            type: 'GET',
+            url: "/smashers/doesExist",
             dataType: "json",
-            data: ajaxData,
-            beforeSend: function() {
-                $('#tourney-form').toggle();
-                $('#fox-waveshine').removeClass('hidden');
-            },
+            data: { tag: tag_to_check},
             success: function(data) {
-                alert("success");
-                alert(data["tournament"]["name"]);
-                $('#fox-waveshine').addClass('hidden');
+                if(data["does_exist"] == "true") {
+                    sign = '<span class="glyphicon glyphicon-ok alert alert-player alert-success" aria-hidden="true"></span>';
+                    dom.parent().parent().find(".tag-status").html(sign);
+                } else {
+                    sign = '<span class="glyphicon glyphicon-warning-sign alert alert-player alert-warning" aria-hidden="true"></span>';
+                    dom.parent().parent().find(".tag-status").html(sign);
+                }
             }
         });
     });
-
 });
+
+function isSmasher(tag_to_check) {
+    var ret;
+
+
+    return ret;
+}
+
+function checkSmashers(tag_to_check) {
+    tag_to_check = tag_to_check.toLowerCase();
+    var smashers = $('.smasher');
+
+    smashers.each(function(index) {
+        tag = $(this).text().toLowerCase();
+        if(tag.indexOf(tag_to_check) < 0 && $(this).is(":visible"))
+            $(this).slideToggle();
+        else if(tag.indexOf(tag_to_check) >= 0 && $(this).is(":hidden"))
+            $(this).slideToggle();
+    });
+}

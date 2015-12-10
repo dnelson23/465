@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   root 'home#index'
 
   resources :smashers do
+    collection do
+      get 'doesExist'
+    end
   end
 
   resources :tournaments do

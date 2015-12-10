@@ -8,7 +8,7 @@ $light-green: #00C693;
 $text-primary: #E7E7E7;
 
 @mixin transition {
-    transition: border-color ease-in-out .15s, color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, color ease-in-out .15s, background-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
 
 body {
@@ -19,6 +19,16 @@ body {
 section {
     overflow-x: hidden;
     border-bottom: 1px solid $green;
+}
+
+a {
+    color: $green;
+    @include transition;
+    &:hover { color: $light-green; }
+}
+
+.container {
+    margin-top: 90px;
 }
 
 .mountain {
@@ -83,6 +93,24 @@ section {
     &:focus { border-color: $green; }
 }
 
+.alert-player {
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.table-striped > tbody > tr:nth-child(odd)> td, 
+.table-striped > tbody > tr:nth-child(odd)> th {
+   background-color: $light-gray;
+ }
+
+.modal-content {
+    background-color: $dark-gray;
+}
+
+.close {
+    color: $text-primary;
+    text-shadow: 0 1px 0 $light-gray;
+}
 /********************************/
 /*           BUTTONS            */
 /********************************/
@@ -118,8 +146,9 @@ section {
 }
 
 .btn-default.outline:hover, .btn-default.outline:focus, .btn-default.outline:active, .btn-default.outline.active, .open > .dropdown-toggle.btn-default {
-    color: $light-gray;
-    border-color: $light-gray;
+    color: $black;
+    border-color: $white;
+    background-color: $white;
     @include transition;
 }
 .btn-default.outline:active, .btn-default.outline.active {
