@@ -25,12 +25,12 @@
             <h3><span class="green">Smash Mountain</span> makes use of the Challonge API to upload tournament matches.</h3>
             <h3>Smashers are tracked using their tags. <span class="challonge-orange">Challonge</span> bracket matches are linked to players tags at the time a tournament is uploaded.</h3>
             <h3>Track set counts between players in your region, as well as total sets won and lost.</h3>
-            <h3><a href="/users/sign_in" class="btn btn-lg btn-default outline">Sign in</a> and click <span class="green">Upload Tournament</span> to the right to begin.</h3>
-            <h3>Don't have an account? <a href="/users/sign_up" class="btn btn-lg btn-default outline">Register Today!</a></h3>
+            <h3><%= link_to "Sign In", new_user_session_path, class: "btn btn-lg btn-default outline" %> and click <span class="green">Upload Tournament</span> to the right to begin.</h3>
+            <h3>Don't have an account? <%= link_to "Register Today!", new_user_registration_path, class: "btn btn-lg btn-default outline" %></h3>
         </div>
         <div class="col-xs-3">
-            <a href="/tournaments/upload" class="btn btn-lg btn-primary outline full">Upload Tournament</a>
-            <a href="/smashers" class="btn btn-lg btn-primary outline full">Smashers</a>
+            <%= link_to "Upload Tournament", upload_tournaments_path, class: "btn btn-lg btn-primary outline full" %>
+            <%= link_to "Smashers", smashers_path, class: "btn btn-lg btn-primary outline full" %>
         </div>
     </div>
 </section>

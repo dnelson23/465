@@ -18,8 +18,8 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.first_name %> <%= current_user.last_name %> <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <li><a href="/tournaments/upload">Upload Tournament</a></li>
-              <li><a href="/smashers">View Smashers</a></li>
+              <li><%= link_to "Upload Tournament", upload_tournaments_path %></li>
+              <li><%= link_to "View Smashers", smashers_path %></li>
               <li role="separator" class="divider"></li>
               <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
             </ul>
