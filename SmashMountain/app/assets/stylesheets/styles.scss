@@ -4,42 +4,142 @@ $black: #101010;
 $white: #CCCCCC;
 $green: #0FB187;
 $light-green: #00C693;
+$challonge-orange: #ff7324;
 
 $text-primary: #E7E7E7;
 
 @mixin transition {
-    transition: border-color ease-in-out .15s, color ease-in-out .15s, background-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, 
+                color ease-in-out .15s, 
+                background-color ease-in-out .15s, 
+                box-shadow ease-in-out .15s,
+                text-decoration ease-in-out .15s;
 }
+
+@mixin spanHeaders {
+    span {
+        font-weight: bold;
+        &.green { 
+            color: $green; 
+        }
+
+        &.light-green { 
+            color: $light-green; 
+        }
+
+        &.challonge-orange {
+            color: $challonge-orange;
+        }
+    }
+}
+
+
+/********************************/
+/*         CUSTOM LESS          */
+/********************************/
+
+html, body, .container { height: 100%; }
+body > .container { height: auto; min-height: 100%; }
 
 body {
     color: $text-primary;
     background-color: $dark-gray;
 }
 
-section {
-    overflow-x: hidden;
-    border-bottom: 1px solid $green;
-}
+@include spanHeaders;
 
 a {
     color: $green;
     @include transition;
     &:hover { color: $light-green; }
+    a:active { colo: $light-green; }
+}
+
+section {
+    border-bottom: solid 2px $light-green;
+    padding-top: 40px;
+    padding-bottom: 80px;
+}
+
+h1 {
+    font-size: 42px;
+    @include spanHeaders;
+}
+
+h1, h2, h3, h4 {
+    margin-bottom: 20px;
+    @include spanHeaders;
+}
+
+.inline {
+    display: inline-block;
+    padding: 0px 10px 0px 10px;
+}
+
+#main-container:before {
+    content: "";
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: -1;
+
+    display: block;
+    background-image: linear-gradient( rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85) ), url(asset-path("melee-screen.png"));
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+
+    -webkit-filter: blur(10px);
+    -moz-filter: blur(10px);
+    -o-filter: blur(10px);
+    -ms-filter: blur(10px);
+    filter: blur(10px);
+}
+
+#main-container {
+    z-index: 0;
+    font-family: 'Open Sans';
 }
 
 .container {
-    margin-top: 90px;
+    padding-top: 90px;
+    padding-bottom: 3em;
 }
 
-.mountain {
-    background: url(asset-path("smash_mountain_cover.png"));
-    min-width: 1250px;
-    min-height: 800px;
+.main-header {
+    padding: 50px;
+}
 
-    #mountain-text {
-        position: absolute;
-        bottom: 50px;
-    }
+.section-header {
+    margin-bottom: 40px;
+}
+
+hSuper {
+    font-size: 52px;
+    @include spanHeaders;
+}
+
+#footer {
+    clear: both;
+    position: relative;
+    z-index: 10;
+    height: 3em;
+    margin-top: -3em;
+}
+
+/********************************/
+/*      BOOTSTRAP OVERRIDE      */
+/********************************/
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+    color: $white;
+    background-color: $light-gray;
+    @include transition;
+}
+
+.nav-pills > li > a:hover {
+    color: $challonge-orange;
+    @include transition;
 }
 
 .navbar-default {
@@ -111,6 +211,7 @@ a {
     color: $text-primary;
     text-shadow: 0 1px 0 $light-gray;
 }
+
 /********************************/
 /*           BUTTONS            */
 /********************************/
@@ -119,6 +220,12 @@ a {
     background: none;
     padding: 12px 22px;
     @include transition;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.btn.full {
+    width: 100%;
 }
 
 .btn-primary.outline {
@@ -145,7 +252,7 @@ a {
     @include transition;
 }
 
-.btn-default.outline:hover, .btn-default.outline:focus, .btn-default.outline:active, .btn-default.outline.active, .open > .dropdown-toggle.btn-default {
+.btn-default.outline:hover, .btn-default.outline:focus, .open > .dropdown-toggle.btn-default {
     color: $black;
     border-color: $white;
     background-color: $white;
