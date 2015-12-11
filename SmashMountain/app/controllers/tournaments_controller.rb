@@ -2,6 +2,8 @@ class TournamentsController < ApplicationController
     require 'uri'
     include ChallongeApi
 
+    before_action :authenticate_user!
+
     def upload
 
     end
@@ -12,6 +14,11 @@ class TournamentsController < ApplicationController
         
         @tournament = JSON.parse(getTournament tournament)
         @tournament = @tournament["tournament"]
+
+        if !Tournament.find_by(name: @tournament["name"]).nil? 
+            redirect_to :back, danger: "Tournament and matches are already in the database."
+        end
+
         @smashers = @tournament["participants"]
         @matches = @tournament["matches"]
     end
@@ -48,5 +55,8 @@ class TournamentsController < ApplicationController
             end
             thisMatch.save
         end
+
+        flash[:success] = "Tournament and matches uploaded successfully!"
+        render "upload"
     end
 end
