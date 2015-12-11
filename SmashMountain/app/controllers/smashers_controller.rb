@@ -11,7 +11,7 @@ class SmashersController < ApplicationController
     end
 
     def show
-        smasher = Smasher.find(params[:id])
+        @smasher = Smasher.find(params[:id])
     end
 
     def update

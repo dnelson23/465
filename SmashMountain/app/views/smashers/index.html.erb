@@ -12,7 +12,7 @@
             <tbody>
                 <% @smashers.each do |smasher| %>
                     <tr>
-                        <td><a href="/smasher/<%= smasher.id %>"><%= smasher.tag %></a></td>
+                        <td><a href="/smashers/<%= smasher.id %>"><%= smasher.tag %></a></td>
                         <td><%= smasher.wins.count %></td>
                         <td><%= smasher.losses.count %></td>
                     </tr>
