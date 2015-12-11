@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,600' rel='stylesheet' type='text/css'>
     <title>Smash Mountain</title>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -24,6 +25,11 @@
         <div class="row">
             <div id="main-container" class="col-xs-12">
               <% flash.each do |key, msg| %>
+                <% if key == "alert" %>
+                  <% key = "danger" %>
+                <% elsif key == "notice" %>
+                 <% key = "info" %>
+                <% end %>
                 <%= content_tag :div, msg, :id => key, :class => "alert alert-" + key %>
               <% end %>
 
@@ -31,6 +37,8 @@
 
             </div>
         </div>
+    </div>
+    <div id="footer">
     </div>
   </body>
   <footer>
