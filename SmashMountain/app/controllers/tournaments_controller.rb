@@ -13,6 +13,13 @@ class TournamentsController < ApplicationController
         @allSmashers = Smasher.all
         
         @tournament = JSON.parse(getTournament tournament)
+
+        if @tournament["errors"]
+            flash[:danger] = "We were unable to find the requested tournament. Please check the names and try again."
+            redirect_to :back
+            return
+        end
+
         @tournament = @tournament["tournament"]
 
         @smashers = @tournament["participants"]
