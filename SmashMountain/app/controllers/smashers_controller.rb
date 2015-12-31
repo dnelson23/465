@@ -4,20 +4,41 @@ class SmashersController < ApplicationController
         @smashers = Smasher.all
     end
 
-    def create
-    end
-
-    def new
-    end
-
     def show
         @smasher = Smasher.find(params[:id])
-    end
 
-    def update
-    end
+        ## Compile records again other smashers
+        @records = Hash.new
+        @smasher.matches.each do |match|
+            if match.winner_id == @smasher.id
+                opponent = Smasher.find match.loser_id
+                if @records.has_key? opponent.tag
+                    @records[opponent.tag]['wins'] += 1
+                else
+                    @records[opponent.tag] = { 'wins' => 1, 'losses' => 0 }
+                end
+            else
+                opponent = Smasher.find match.winner_id
+                if @records.has_key? opponent.tag
+                    @records[opponent.tag]['losses'] += 1
+                else
+                    @records[opponent.tag] = { 'wins' => 0, 'losses' => 1 }
+                end
+            end
+        end
 
-    def destroy
+        ## Calculate biggest rival
+        @rival = { 'tag' => @records.keys.first, 'record' => @records.values.first, 'setCount' => 0 }
+        @records.each do |key, value|
+            if (@rival['record']['wins'] - @rival['record']['losses']).abs > (value['wins'] - value['losses']).abs
+                @rival = { 'tag' => key, 'record' => value }
+            end
+        end
+        @smasher.matches.each do |match|
+            if Smasher.find(match.winner_id).tag == @rival['tag'] || Smasher.find(match.loser_id).tag == @rival['tag']
+                @rival['setCount'] += 1
+            end
+        end
     end
 
     def doesExist
