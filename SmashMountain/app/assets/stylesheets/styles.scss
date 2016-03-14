@@ -1,6 +1,8 @@
 $dark-gray: #292929;
 $light-gray: #525252;
-$black: #101010;
+$primary-black: #101010;
+$black-quarter: rgba(16, 16, 16, 0.25);
+$true-black: rgb(0, 0, 0);
 $white: #CCCCCC;
 $green: #0FB187;
 $light-green: #00C693;
@@ -43,7 +45,7 @@ body > .container { height: auto; min-height: 100%; }
 
 body {
     color: $text-primary;
-    background-color: $dark-gray;
+    background-color: $primary-black;
 }
 
 @include spanHeaders;
@@ -143,8 +145,8 @@ hSuper {
 
 .navbar-default {
     min-height: 70px;
-    background-color: #525252;
     border-color: $green;
+    background-color: rgba(0, 0, 0, 0.88);
     padding-left: 15px;
     padding-right: 15px;
     padding-top: 8px;
@@ -171,10 +173,10 @@ hSuper {
         }
 
         .dropdown-menu {
-            background-color: $black;
+            background-color: $primary-black;
             border: 1px solid $light-gray;
 
-            li { a:hover { color: $black; } }
+            li { a:hover { color: $primary-black; } }
         }
 
     }
@@ -182,7 +184,7 @@ hSuper {
 }
 
 .well {
-    background-color: $black;
+    background-color: $black-quarter;
     border: 1px solid $white;
 }
 
@@ -252,7 +254,7 @@ hSuper {
 }
 
 .btn-default.outline:hover, .btn-default.outline:focus, .open > .dropdown-toggle.btn-default {
-    color: $black;
+    color: $primary-black;
     border-color: $white;
     background-color: $white;
     @include transition;

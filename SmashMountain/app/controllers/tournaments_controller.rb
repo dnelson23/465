@@ -9,6 +9,7 @@ class TournamentsController < ApplicationController
     end
 
     def new
+        flash.clear
         tournament = params[:tournament_sub] + "-" + params[:tournament_name]
         @allSmashers = Smasher.all
         
@@ -30,7 +31,7 @@ class TournamentsController < ApplicationController
         thisTournament = Tournament.find_or_initialize_by(challonge_id: params[:tournament_id])
         if thisTournament.persisted?
             flash[:danger] = "Tournament is already in the database"
-            redirect_to :back 
+            redirect_to action: "upload" 
             return
         else
             thisTournament.name = params[:tournament_name]
